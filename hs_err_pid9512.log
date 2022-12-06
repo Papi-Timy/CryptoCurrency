@@ -1,0 +1,271 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 65536 bytes for Failed to commit metaspace.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (virtualSpaceNode.cpp:110), pid=9512, tid=28872
+#
+# JRE version:  (17.0.4.1+1) (build )
+# Java VM: OpenJDK 64-Bit Server VM (17.0.4.1+1, mixed mode, tiered, compressed oops, compressed class ptrs, parallel gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: --add-modules=ALL-SYSTEM --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/sun.nio.fs=ALL-UNNAMED -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Djava.import.generatesMetadataFilesAtProjectRoot=false -Dfile.encoding=utf8 -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable -javaagent:c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\lombok\lombok-1.18.24.jar -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=c:\Users\mafat\AppData\Roaming\Code\User\workspaceStorage\0e76ea2632a4499ddf5cfbc9fd5763ab\redhat.java c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\server\plugins\org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar -configuration c:\Users\mafat\AppData\Roaming\Code\User\globalStorage\redhat.java\1.12.0\config_win -data c:\Users\mafat\AppData\Roaming\Code\User\workspaceStorage\0e76ea2632a4499ddf5cfbc9fd5763ab\redhat.java\jdt_ws
+
+Host: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz, 8 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.2251)
+Time: Thu Nov 24 12:48:51 2022 South Africa Standard Time elapsed time: 0.041249 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000026abe411e90):  JavaThread "Unknown thread" [_thread_in_vm, id=28872, stack(0x000000f764900000,0x000000f764a00000)]
+
+Stack: [0x000000f764900000,0x000000f764a00000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x67731a]
+V  [jvm.dll+0x832284]
+V  [jvm.dll+0x833a2e]
+V  [jvm.dll+0x834093]
+V  [jvm.dll+0x245775]
+V  [jvm.dll+0x82e22b]
+V  [jvm.dll+0x61bdf6]
+V  [jvm.dll+0x61be5a]
+V  [jvm.dll+0x61e67a]
+V  [jvm.dll+0x61c796]
+V  [jvm.dll+0x239e0f]
+V  [jvm.dll+0x6265a5]
+V  [jvm.dll+0x1ea5db]
+V  [jvm.dll+0x1eab15]
+V  [jvm.dll+0x1eb54f]
+V  [jvm.dll+0x1e09f1]
+V  [jvm.dll+0x53c910]
+V  [jvm.dll+0x1f11e7]
+V  [jvm.dll+0x7ac56b]
+V  [jvm.dll+0x7ad912]
+V  [jvm.dll+0x7adc48]
+V  [jvm.dll+0x830a0f]
+V  [jvm.dll+0x83079a]
+V  [jvm.dll+0x802524]
+V  [jvm.dll+0x803cdd]
+V  [jvm.dll+0x369921]
+V  [jvm.dll+0x7e31bc]
+V  [jvm.dll+0x3ec25f]
+V  [jvm.dll+0x3edde1]
+C  [jli.dll+0x5277]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x174b4]
+C  [ntdll.dll+0x526a1]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007fffb6d84e98, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x0000026abe429ae0 GCTaskThread "GC Thread#0" [stack: 0x000000f764a00000,0x000000f764b00000] [id=4448]
+
+=>0x0000026abe411e90 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=28872, stack(0x000000f764900000,0x000000f764a00000)]
+
+Threads with active compile tasks:
+
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x0000026abc1ddc40] Metaspace_lock - owner thread: 0x0000026abe411e90
+
+Heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) not mapped
+Compressed class space mapped at: 0x0000000100000000-0x0000000140000000, reserved size: 1073741824
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3, Narrow klass range: 0x140000000
+
+GC Precious Log:
+ CPUs: 8 total, 8 available
+ Memory: 16064M
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Enabled (32-bit)
+ Alignments: Space 512K, Generation 512K, Heap 2M
+ Heap Min Capacity: 100M
+ Heap Initial Capacity: 100M
+ Heap Max Capacity: 1G
+ Pre-touch: Disabled
+ Parallel Workers: 8
+
+Heap:
+ PSYoungGen      total 29696K, used 512K [0x00000000eab00000, 0x00000000ecc00000, 0x0000000100000000)
+  eden space 25600K, 2% used [0x00000000eab00000,0x00000000eab80070,0x00000000ec400000)
+  from space 4096K, 0% used [0x00000000ec800000,0x00000000ec800000,0x00000000ecc00000)
+  to   space 4096K, 0% used [0x00000000ec400000,0x00000000ec400000,0x00000000ec800000)
+ ParOldGen       total 68608K, used 0K [0x00000000c0000000, 0x00000000c4300000, 0x00000000eab00000)
+  object space 68608K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c4300000)
+ Metaspace       used 835K, committed 896K, reserved 1056768K
+  class space    used 67K, committed 128K, reserved 1048576K
+
+Card table byte_map: [0x0000026abddd0000,0x0000026abdfe0000] _byte_map_base: 0x0000026abd7d0000
+
+Marking Bits: (ParMarkBitMap*) 0x00007fffb6df2cc0
+ Begin Bits: [0x0000026ad00b0000, 0x0000026ad10b0000)
+ End Bits:   [0x0000026ad10b0000, 0x0000026ad20b0000)
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (20 events):
+Event: 0.032 loading class java/lang/StringBuilder done
+Event: 0.032 loading class jdk/internal/misc/UnsafeConstants
+Event: 0.032 loading class jdk/internal/misc/UnsafeConstants done
+Event: 0.032 loading class jdk/internal/misc/Unsafe
+Event: 0.033 loading class jdk/internal/misc/Unsafe done
+Event: 0.033 loading class jdk/internal/module/Modules
+Event: 0.033 loading class jdk/internal/module/Modules done
+Event: 0.033 loading class java/io/ByteArrayInputStream
+Event: 0.034 loading class java/io/InputStream
+Event: 0.034 loading class java/io/Closeable
+Event: 0.034 loading class java/lang/AutoCloseable
+Event: 0.034 loading class java/lang/AutoCloseable done
+Event: 0.034 loading class java/io/Closeable done
+Event: 0.034 loading class java/io/InputStream done
+Event: 0.034 loading class java/io/ByteArrayInputStream done
+Event: 0.034 loading class java/net/URL
+Event: 0.035 loading class java/net/URL done
+Event: 0.035 loading class java/util/jar/Manifest
+Event: 0.035 loading class java/util/jar/Manifest done
+Event: 0.035 loading class jdk/internal/loader/BuiltinClassLoader
+
+
+Dynamic libraries:
+0x00007ff697a10000 - 0x00007ff697a1e000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\java.exe
+0x00007ff803030000 - 0x00007ff803228000 	C:\windows\SYSTEM32\ntdll.dll
+0x00007ff801970000 - 0x00007ff801a2f000 	C:\windows\System32\KERNEL32.DLL
+0x00007ff800840000 - 0x00007ff800b12000 	C:\windows\System32\KERNELBASE.dll
+0x00007ff800f80000 - 0x00007ff801080000 	C:\windows\System32\ucrtbase.dll
+0x00007ffff47c0000 - 0x00007ffff47d8000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\jli.dll
+0x00007fffeed10000 - 0x00007fffeed29000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\VCRUNTIME140.dll
+0x00007ff801240000 - 0x00007ff8013dd000 	C:\windows\System32\USER32.dll
+0x00007ff800e40000 - 0x00007ff800e62000 	C:\windows\System32\win32u.dll
+0x00007ff802180000 - 0x00007ff8021ab000 	C:\windows\System32\GDI32.dll
+0x00007fffe3de0000 - 0x00007fffe407a000 	C:\windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\COMCTL32.dll
+0x00007ff800e70000 - 0x00007ff800f7f000 	C:\windows\System32\gdi32full.dll
+0x00007ff8011a0000 - 0x00007ff80123e000 	C:\windows\System32\msvcrt.dll
+0x00007ff800bd0000 - 0x00007ff800c6d000 	C:\windows\System32\msvcp_win.dll
+0x00007ff801080000 - 0x00007ff8010b2000 	C:\windows\System32\IMM32.DLL
+0x00007ffff53e0000 - 0x00007ffff53ec000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\vcruntime140_1.dll
+0x00007fffbc180000 - 0x00007fffbc211000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\msvcp140.dll
+0x00007fffb6270000 - 0x00007fffb6eb6000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\server\jvm.dll
+0x00007ff802210000 - 0x00007ff8022be000 	C:\windows\System32\ADVAPI32.dll
+0x00007ff801740000 - 0x00007ff8017dc000 	C:\windows\System32\sechost.dll
+0x00007ff801e30000 - 0x00007ff801f55000 	C:\windows\System32\RPCRT4.dll
+0x00007ff801d70000 - 0x00007ff801d78000 	C:\windows\System32\PSAPI.DLL
+0x00007ffff75c0000 - 0x00007ffff75c9000 	C:\windows\SYSTEM32\WSOCK32.dll
+0x00007ff801c50000 - 0x00007ff801cbb000 	C:\windows\System32\WS2_32.dll
+0x00007fffdf470000 - 0x00007fffdf497000 	C:\windows\SYSTEM32\WINMM.dll
+0x00007ffff47e0000 - 0x00007ffff47ea000 	C:\windows\SYSTEM32\VERSION.dll
+0x00007ffffefb0000 - 0x00007ffffefc2000 	C:\windows\SYSTEM32\kernel.appcore.dll
+0x00007fffeec60000 - 0x00007fffeec6a000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\jimage.dll
+0x00007ffffed50000 - 0x00007ffffef34000 	C:\windows\SYSTEM32\DBGHELP.DLL
+0x00007fffdf3f0000 - 0x00007fffdf41c000 	C:\windows\SYSTEM32\dbgcore.DLL
+0x00007ff800730000 - 0x00007ff8007b2000 	C:\windows\System32\bcryptPrimitives.dll
+0x00007fffeec50000 - 0x00007fffeec5e000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\instrument.dll
+0x00007fffe3c80000 - 0x00007fffe3ca5000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\java.dll
+0x00007fffed8e0000 - 0x00007fffed8f8000 	c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin;C:\windows\SYSTEM32;C:\windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e;c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\jre\17.0.4.1-win32-x86_64\bin\server
+
+VM Arguments:
+jvm_args: --add-modules=ALL-SYSTEM --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/sun.nio.fs=ALL-UNNAMED -Declipse.application=org.eclipse.jdt.ls.core.id1 -Dosgi.bundles.defaultStartLevel=4 -Declipse.product=org.eclipse.jdt.ls.core.product -Djava.import.generatesMetadataFilesAtProjectRoot=false -Dfile.encoding=utf8 -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable -javaagent:c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\lombok\lombok-1.18.24.jar -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=c:\Users\mafat\AppData\Roaming\Code\User\workspaceStorage\0e76ea2632a4499ddf5cfbc9fd5763ab\redhat.java 
+java_command: c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\server\plugins\org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar -configuration c:\Users\mafat\AppData\Roaming\Code\User\globalStorage\redhat.java\1.12.0\config_win -data c:\Users\mafat\AppData\Roaming\Code\User\workspaceStorage\0e76ea2632a4499ddf5cfbc9fd5763ab\redhat.java\jdt_ws
+java_class_path (initial): c:\Users\mafat\.vscode\extensions\redhat.java-1.12.0-win32-x64\server\plugins\org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+    uintx AdaptiveSizePolicyWeight                 = 90                                        {product} {command line}
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+    uintx GCTimeRatio                              = 4                                         {product} {command line}
+     bool HeapDumpOnOutOfMemoryError               = true                                   {manageable} {command line}
+    ccstr HeapDumpPath                             = c:\Users\mafat\AppData\Roaming\Code\User\workspaceStorage\0e76ea2632a4499ddf5cfbc9fd5763ab\redhat.java         {manageable} {command line}
+   size_t InitialHeapSize                          = 104857600                                 {product} {command line}
+   size_t MaxHeapSize                              = 1073741824                                {product} {command line}
+   size_t MaxNewSize                               = 357564416                                 {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 524288                                    {product} {ergonomic}
+   size_t MinHeapSize                              = 104857600                                 {product} {command line}
+   size_t NewSize                                  = 34603008                                  {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5839372                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122909434                              {pd product} {ergonomic}
+   size_t OldSize                                  = 70254592                                  {product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122909434                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 1073741824                             {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                           {product lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+     bool UseParallelGC                            = true                                      {product} {command line}
+
+Logging:
+Log output configuration:
+ #0: stdout all=off uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=C:\Users\mafat\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\mafat\AppData\Local\Programs\Python\Python310\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\mafat\AppData\Local\Microsoft\WindowsApps;C:\Users\mafat\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\mafat\AppData\Local\GitHubDesktop\bin;C:\Users\mafat\AppData\Roaming\npm;C:\Users\mafat\AppData\Local\atom\bin
+USERNAME=mafat
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+TMP=C:\Users\mafat\AppData\Local\Temp
+TEMP=C:\Users\mafat\AppData\Local\Temp
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 10 , 64 bit Build 19041 (10.0.19041.2251)
+OS uptime: 2 days 3:47 hours
+
+CPU: total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 140 stepping 1 microcode 0xa4, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, avx512f, avx512dq, avx512cd, avx512bw, avx512vl, sha, fma, vzeroupper, avx512_vpopcntdq, avx512_vpclmulqdq, avx512_vaes, avx512_vnni, clflush, clflushopt, clwb, avx512_vbmi2, avx512_vbmi
+
+Memory: 4k page, system-wide physical 16064M (511M free)
+TotalPageFile size 65216M (AvailPageFile size 4M)
+current process WorkingSet (physical memory assigned to process): 14M, peak: 14M
+current process commit charge ("private bytes"): 147M, peak: 148M
+
+vm_info: OpenJDK 64-Bit Server VM (17.0.4.1+1) for windows-amd64 JRE (17.0.4.1+1), built on Aug 17 2022 07:42:43 by "temurin" with MS VC++ 16.7 (VS2019)
+
+END.
