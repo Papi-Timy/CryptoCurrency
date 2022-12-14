@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 
 import {Text,View,StyleSheet, Image,ImageBackground,LogBox, ScrollView, TouchableOpacity, FlatList} from 'react-native'
-import { FONTS,images,SIZES,icons,COLORS,dummyData } from "../../constants";
+import { FONTS,images,SIZES,icons,COLORS,dummyData, ROUTES } from "../../constants";
 import { PriceAlert ,TransactionHistory} from "../../components";
 
 const Home =({navigation}) =>{
@@ -13,13 +13,17 @@ React.useEffect(() =>{
 
 },[])
 
-const renderItem = ({item,index}) => {
+const renderItem = ({item,index}) => (
     <TouchableOpacity 
     style={
     {
         
-        marginLeft:index==0 ? SIZES.padding: 0
-        ,...styles.trendingItem}}>
+       
+        ...styles.trendingItem,
+        marginLeft: index == 0 ? SIZES.padding: 0}}
+        onPress={()=> navigation.navigate(ROUTES.CRYPTO_DETAIL,{currency:item})}
+        
+        >
         {/* currency */}
         <View style={{flexDirection:"row"}}>
             <View>
@@ -28,9 +32,9 @@ const renderItem = ({item,index}) => {
                 resizeMode="cover"
                 style={styles.TrendingItemImage}
                 />
-            </View>
+             </View>
             <View  style={{marginLeft:SIZES.base}}>
-                <Text style={{...FONTS.h2}}>{item.curreny}</Text>
+                <Text style={{...FONTS.h2,color:COLORS.black}}>{item.currency}</Text>
                 <Text  style={{color: COLORS.gray, ...FONTS.body3}}>{item.code}</Text>
 
             </View>
@@ -41,13 +45,13 @@ const renderItem = ({item,index}) => {
 
         <View  style={{marginTop:SIZES.radius}}>
 
-            <Text>${item.amount}</Text>
+            <Text  style={{...FONTS.h2,color:COLORS.black}}>${item.amount}</Text>
             <Text
             style={{color: item.type =="I" ? COLORS.green : COLORS.red, ...FONTS.h3}}>{item.changes}</Text>
         </View>
 
     </TouchableOpacity>
-}
+)
     function renderHeader(){
 
         return(
@@ -90,7 +94,7 @@ const renderItem = ({item,index}) => {
 
 
               {/* Trending Session */}
-              {/* <View  style={styles.trending}>
+              <View  style={styles.trending}>
                 <Text  style={styles.trendingText}> Trending</Text>
                 <FlatList
                 contentContainerStyle={{marginTop:SIZES.base}}
@@ -99,7 +103,7 @@ const renderItem = ({item,index}) => {
                 keyExtractor={item => `${item.id}`}
                 horizontal
                 showsHorizontalScrollIndicator={false}/>
-              </View> */}
+              </View>
 
 
             </ImageBackground>
@@ -149,7 +153,7 @@ const renderItem = ({item,index}) => {
     }
     return(
        <ScrollView>
-        <View>
+        <View style={{flex:1,paddingBottom:130}}>
             {renderHeader()}
             {renderAlert()}
             {renderNotice()}
@@ -191,8 +195,8 @@ const styles = StyleSheet.create({
         justifyContent:"center"
        },
        trending:{
-        // position:"absolute",
-        // bottom:"-50%"
+        position:"absolute",
+        bottom:"-30%"
        },trendingText:{
         marginLeft:SIZES.padding,
         color:COLORS.white,

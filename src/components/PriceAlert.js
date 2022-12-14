@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     priceTouchable:{
 flexDirection:"row",
 alignItems:"center",
-marginTop:SIZES.padding,
+marginTop:SIZES.padding * 4.5,
 marginHorizontal:SIZES.padding,
 paddingVertical:SIZES.padding,
 paddingHorizontal:SIZES.radius,

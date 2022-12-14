@@ -26,13 +26,13 @@ const TransactionHistory = ({customContainerStyle,history}) =>{
                     marginLeft:SIZES.radius
                 }}>
 
-                    <Text  style={{...FONTS.h3,}}   >{item.description}</Text>
+                    <Text  style={{...FONTS.h3,color:COLORS.black}}   >{item.description}</Text>
                     <Text  style={{color:COLORS.gray,...FONTS.body4}}>{item.date}</Text>
 
                 </View>
                 <View style={{flexDirection:'row',
             height:'100%'}}>
-                    <Text>{item.amount}    {item.currency}</Text>
+                    <Text style={{color: item.type =='B' ? COLORS.green : COLORS.black,...FONTS.H3}}>{item.amount}    {item.currency}</Text>
                     <Image
                     source={icons.right_arrow}
                     style={{
@@ -48,8 +48,8 @@ const TransactionHistory = ({customContainerStyle,history}) =>{
 
     return(
         <View  style={{...styels.transHistory}}>
-            <Text style={{...FONTS.h2}}>
-                TransactionHistory
+            <Text style={{...FONTS.h3,color:COLORS.black}}>
+                Transaction History
             </Text>
             <FlatList
                 contentContainerStyle={{marginTop:SIZES.padding}}
