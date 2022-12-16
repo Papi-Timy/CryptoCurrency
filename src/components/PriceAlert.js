@@ -11,7 +11,7 @@ const PriceAlert = ({customContainerStyle}) =>{
     <TouchableOpacity   
     style={{
         ...customContainerStyle,
-        ...styles.shadow,
+        // ...styles.shadow,
         ...styles.priceTouchable
 
     }}>

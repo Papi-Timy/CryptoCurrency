@@ -1,29 +1,89 @@
 import React from "react";
- import { Button, Text,TouchableOpacity,View,StyleSheet } from "react-native";
-import { ROUTES } from "../../constants";
+ import { Button, Text,TouchableOpacity,View,StyleSheet,SafeAreaView,ScrollView } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
+import {  HeaderBar,CurrencyLabel ,TransactionHistory,TextButton,PriceAlert} from "../../components";
+import { COLORS, dummyData, FONTS, ROUTES,icons, SIZES } from "../../constants";
+
+ const Transaction = ({route,navigation})=>{
+
+    const [selectedCurrency,setSelectedCurrency] =React.useState(null)
+
+    React.useEffect(()=>{
+        const {currency} =route.params
+        setSelectedCurrency(currency)
+
+    })
+
+    function renderTrade(){
+        return(
+            <View  style={{
+                marginTop:SIZES.padding,
+                marginHorizontal:SIZES.padding,
+                padding:SIZES.padding,
+                borderRadius:SIZES.radius,
+                backgroundColor:COLORS.white
+
+            }}>
+                <CurrencyLabel
+                icon={selectedCurrency?.image}
+                code={selectedCurrency?.code}
+                currency={selectedCurrency?.currency}
+                />
+
+                <View  style={{
+                    marginTop:SIZES.padding,
+                    marginBottom:SIZES.padding*1.5,
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}>
+
+                    <Text style={{
+                        ...FONTS.h2,
+                        color:COLORS.black,
+                        
+
+                    }}>{selectedCurrency?.wallet.crypto}   {selectedCurrency?.code}</Text>
+                    <Text  sty4={{
+                        ...FONTS.body3
+                    }}   >${selectedCurrency.wallet.value}</Text>
+                </View>
+                <TextButton
+                label='Trace'
+                onPress={()=>console.log('trace')}
+                   />
 
 
- const Transaction = props=>{
+            </View>
+        )
+    }
+    function renderTransactionHistory(){
+        return(
+            <TransactionHistory
+           customContainerStyle={{
 
-    const navigation = useNavigation()
+           }}
+           history={selectedCurrency?.transactionHistory}
+            />
+        )
+    }
 
 
     return(
-        <View  style={style.centerView}>
-         <Text>Transaction Page</Text>
-         <TouchableOpacity
-                onPress={() => navigation.navigate(ROUTES.HOME)}
-                activeOpacity={0.7}
+       <SafeAreaView style={{
+        flex:1
+       }}>
+        <HeaderBar right={false}/>
+        <ScrollView>
+            <View  style={{flex:1,
+            paddingBottom:SIZES.padding}}   >  
+            {renderTrade()}
+            {renderTransactionHistory()}
 
-                style={{
-                    backgroundColor:"#000",
-                    
-                }}
-                >
-                <Text >navigate to Home</Text>
-              </TouchableOpacity>
-        </View>
+            </View>
+        </ScrollView>
+
+       </SafeAreaView>
     )
 
  }

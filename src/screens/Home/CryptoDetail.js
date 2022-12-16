@@ -1,10 +1,11 @@
 import React from "react";
- import { Button, Text,TouchableOpacity,View,StyleSheet ,SafeAreaView, ScrollView, Animated} from "react-native";
-import { COLORS, dummyData, FONTS, ROUTES, SIZES } from "../../constants";
+ import { Button, Text,TouchableOpacity,Image,View,StyleSheet ,SafeAreaView, ScrollView, Animated} from "react-native";
+import { COLORS, dummyData, FONTS, ROUTES,icons, SIZES } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
-import { HeaderBar,CurrencyLabel ,TextButton} from "../../components";
+import { HeaderBar,CurrencyLabel ,TextButton,PriceAlert} from "../../components";
 import { VictoryScatter,VictoryLine,VictoryChart,VictoryAxis}from 'victory-native'
 import {VictoryCustomTheme} from '../../styles'
+
 
 
  const CryptoDetail = ({route,navigation})=>{
@@ -24,6 +25,53 @@ import {VictoryCustomTheme} from '../../styles'
     },[])
     function optionOnClickHandler(option){
         setSelectedOption(option)
+    }
+
+    function renderDots(){
+        const dotPosition = Animated.divide(scrollX,SIZES.width)
+        return(
+            <View  style={{height:30,marginTop:15}}>
+                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}   >
+                    {numberOfCharts.map((item,index)=>{
+                        const opacity = dotPosition.interpolate({
+                            inputRange:[index-1,index,index+1],
+                            outputRange:[0.3,1,0.3],
+                            extrapolate:'clamp'
+                        })
+
+                        const dotSize = dotPosition.interpolate({
+                            inputRange:[index-1,index,index+1],
+                            outputRange:[SIZES.base*0.8,10,SIZES.base*0.8],
+                            extrapolate:'clamp'
+                        })
+                        const dotColor = dotPosition.interpolate({
+                            inputRange:[index-1,index,index+1],
+                            outputRange:[COLORS.gray,COLORS.primary,COLORS.gray],
+                            extrapolate:'clamp'
+                        })
+
+                        return(
+                            <Animated.View
+                            key={`dot-${index}`}
+                            opacity={opacity}
+                            style={{
+                                borderRadius:SIZES.radius,
+                                marginHorizontal:6,
+                                width:dotSize,
+                                height:dotSize,
+                                backgroundColor:dotColor
+                            }}
+                            
+                            />
+                        )
+                        
+                    })}
+
+                </View>
+
+            </View>
+
+        )
     }
 
  
@@ -177,11 +225,97 @@ import {VictoryCustomTheme} from '../../styles'
 
             </View>
                 {/* Dots */}
+                {renderDots()}
+
 
 
             </View>
         )
 
+    }
+    function renderBuy(){
+        return(
+            <View style={{
+                marginTop:SIZES.padding,
+                marginHorizontal:SIZES.radius,
+                padding:SIZES.radius,
+                borderRadius:SIZES.radius,
+                backgroundColor:COLORS.white
+            }}>
+                <View style={{
+                    flexDirection:'row',
+                    alignItems:'center',
+                    marginBottom:SIZES.radius
+                }}>
+                    {/* currency */}
+
+                    <View style={{flex:1}}>
+                        <CurrencyLabel
+                        icon={selectedCurrency?.image}
+                        currency={`${selectedCurrency?.currency} Wallet`}
+                        code={selectedCurrency?.code}
+                        />
+
+                    </View>
+
+                    {/* amount */}
+                    <View style={{
+                        flexDirection:'row',
+                        alignItems:'center'
+                    }}>
+                        <View  style={{
+                            marginRight:SIZES.base
+                        }}>
+                            <Text style={{
+                                ...FONTS.h3,
+                                color:COLORS.black
+                            }}>${selectedCurrency?.wallet.value}</Text>
+                            <Text  style={{textAlign:'right'}}>{selectedCurrency?.wallet.crypto}  {selectedCurrency?.code}</Text>
+
+                        </View>
+                        <Image 
+                        source={icons.right_arrow}
+                        resizeMode='cover'
+                        style={{
+                            width:20,
+                            height:20,
+                            tintColor:COLORS.gray
+                        }}
+
+
+                        
+                        
+                        />
+
+                    </View>
+
+                </View>
+
+                <TextButton
+                label='Buy'
+                onPress={()=>navigation.navigate(ROUTES.TRANSACTION,{currency:selectedCurrency})}
+                
+                />
+
+            </View>
+        )
+    }
+    function renderAbout(){
+        return(
+            <View style={{
+                marginTop:SIZES.padding,
+                marginHorizontal:SIZES.radius,
+                padding:SIZES.radius,
+                borderRadius:SIZES.radius,backgroundColor:COLORS.white
+            }}>
+                <Text style={{
+                    ...FONTS.h3,color:COLORS.black
+                }}>About  {selectedCurrency?.currency}</Text>
+                <Text style={{
+                    marginTop:SIZES.base,...FONTS.body3
+                }}>{selectedCurrency?.description}</Text>
+            </View>
+        )
     }
 
 
@@ -196,6 +330,14 @@ import {VictoryCustomTheme} from '../../styles'
         <ScrollView>
             <View style={{flex:1,paddingBottom:SIZES.padding}}>
                 {renderChart()}
+                {renderBuy()}
+                {renderAbout()}
+                <PriceAlert
+                customContainerStyle={{
+                    marginTop:SIZES.padding,
+                    marginHorizontal:SIZES.radius
+                }}
+                />
             </View>
 
         </ScrollView>
